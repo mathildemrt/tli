@@ -1,0 +1,49 @@
+#formulaire ul{
+    margin: 2% 20% 0 20%;
+    padding-left: 0;
+}
+#formulaire li, #search li{
+    list-style:none;
+}
+
+input :invalid { 
+    background-color: #F0DDDD;
+    -webkit-box-shadow: 0 0 2px rgba(255, 0, 0, .8); /* Fonctionne pas sur chrome */
+    -moz-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    -o-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    -ms-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    box-shadow:0 0 2px rgba(255, 0, 0, .8);
+}
+
+#formulaire input, #search input{
+    border:1px solid #333;
+    width: 30%;
+    margin-bottom:1%;
+    margin-top:1%;
+    padding : 2px 5px 2px 5px;
+    border-radius: 5px;
+    display : inline;
+}  
+
+#formulaire input[type="submit"], #search input[type="submit"]{
+    min-width: 50px;
+    width: 120px;
+    margin-top : 4%;
+    color: #333;
+    background-color: white;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    padding: 10px 20px;
+    text-transform: uppercase;  
+    margin-bottom: 20px; 
+}
+#formulaire input[type="submit"]:hover{
+    color: antiquewhite;
+    background-color: #333;
+    cursor:pointer;
+}
+#formulaire label{
+    width : 20%;
+    min-width:230px;
+    text-align : left;
+}
