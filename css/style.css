@@ -114,3 +114,37 @@ div .form-inline{
     border-top: 1px solid black;
 }
 
+
+@media print{
+  
+    body { /* Modifications : la couleur de fond de page - la police - l'unitÃ© utilisÃ©e pour la taille de la police  */
+      font-family :Serif;
+      font-size :15pt;
+      margin :0;
+      border :none;
+    }
+    .navbar{
+      display :none;
+    }
+
+    #feed-actus{
+        width : 100%;
+    }
+
+    div #description {
+        width: 100%;
+    }
+
+    footer, header {
+      display :none;
+    }
+
+    h1 {
+      line-height :25pt;
+      font-size :25pt;
+    }
+
+    h2, a { /* Modification de la couleur des titres et liens */
+      color :#000;
+    }
+}
