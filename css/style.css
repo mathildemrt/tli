@@ -123,9 +123,14 @@ div .form-inline{
       margin :0;
       border :none;
     }
-    .navbar{
-      display :none;
+    #barre_recherche{
+        display : none;
     }
+    
+    .jumbotron{
+       background : url("../img/Acupuncture3.jpg") no-repeat top center;
+    }
+
 
     #feed-actus{
         width : 100%;
