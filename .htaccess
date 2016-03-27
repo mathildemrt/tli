@@ -1,0 +1,3 @@
+Options +FollowSymlinks
+RewriteEngine On
+ErrorDocument 404 /tli_rioux/erreur404.php

@@ -1,81 +1,125 @@
 <?php
 
-// Inclusion de la librairie
-require_once('libs/Smarty/Smarty.class.php'); 
 
-$smarty = new Smarty(); 
+/**
+*
+* Index.php
+*
+* Ce script est l'unique point d'entré sur le site. Il
+* s'occupe d'effectuer l'affichage des pages, en fonction des
+* arguments qui lui sont passé par méthode GET
+*
+* @author: CORNILLON-MAREITE
+*/
 
 
-//Setup the url var we are looking for to control page display 
-$page_var = 'page'; 
 
-//Using the $_REQUEST scope so that the page can be passed in via $_POST or $_GET 
-if(count($_GET) > 0 || count($_POST) > 0)
-    $page_request = $_REQUEST[$page_var];
+/** 
+* Inclusion des différentes librairies
+*/
+require_once('libs/Smarty/Smarty.class.php');  /** Moteur de template Smarty */
+require_once('php/classdb.php');               /** Classe de gestion de la base de données */
+
+
+/**
+* Création des instances de classes 
+*/
+$smarty = new Smarty();
+$Temp = new BD();
+
+
+/**
+* Création des variables et constantes
+*/
+$page_var = 'page';                             /** Variable contentant le paramètre GET à récuperer */
+$menu = array (                                 /** Array contenant les différentes sections du site */
+            'accueil' => 'accueil.tpl', 
+            'inscription' => 'inscription.tpl',
+            'pathologies' => 'pathologies.tpl'
+            );
+
+
+/**
+* Récupération de la page voulu dans le paramètre GET. Si le 
+* paramètre n'est pas défini, on redirige vers la page d'accueil
+*/
+if(isset($_GET[$page_var]))
+    $page_request = $_GET[$page_var];
 else
     $page_request = 'accueil';
 
 
-$root_url ="http://".$_SERVER['SERVER_NAME'].'/simple';
 
-//This array holds the relationship between the page variable and the template to load.. This info could also be retrieved from a db 
-$menu = array ( 
-            'accueil' => 'accueil.tpl', 
-            'inscription' => 'inscription.tpl',
-            'pathologies' => 'pathologies.tpl'
-            ); 
-
-if ( array_key_exists ( $page_request, $menu ) ) 
+/**
+* Séléction du template correpondant a la page demandée
+*/
+if ( array_key_exists ( $page_request, $menu ) )    /** Si la page est dans le menu */ 
    $template = $menu[$page_request]; 
-//If not set the default page 
-else 
-   $template = 'accueil.tpl'; 
+else if($page_request == 'about')                   /** Si la page est la section de renseignement */
+    $template = 'about.tpl';
+else if($page_request == 'session')                 /** Si la page est la page d'inscription */
+    $template = 'session.tpl';                      
+else                                                /** S'il ne s'agit d'aucune de ces pages, on renvoi vers l'accueil */
+    $template = 'accueil.tpl';
 
 
+/**
+* Assignation des informations de base à Smarty
+*/
+session_start();
+if(isset ($_SESSION['nom']) && isset ($_SESSION['prenom'])){    /** Si l'utilisateur est connecté, on renseigne ses infos */
+    $nom = $_SESSION['nom'];
+    $prenom = $_SESSION['prenom'];
+    $smarty->assign('identifiant', $prenom." ".$nom);
+    $connexion = 'true';
+}
+else if($page_request == 'erreur_connexion')                    /** S'il y a eu erreur lors de la connection */
+    $connexion = 'erreur';
+else
+    $connexion = 'false';                                       /** Si l'utilisateur n'est pas connecté */
 
-//*********************************
-//Assign  basics infos to Smarty
-//********************************/
-$smarty->assign('menu', $menu); 
-$smarty->assign('template', $template); 
-$smarty->assign('page_var', $page_var);
+$smarty->assign('connexion', $connexion);                       /** Paramètre de connexion */
+$smarty->assign('menu', $menu);                                 /** Paramètre du menu */
+$smarty->assign('template', $template);                         /** Paramètre du template à afficher */
+$smarty->assign('page_courante', $page_request);                /** Paramètre de la page courante */
 
 
-
-
-//****************************************
-//Variable pour affichage des pathologies
-//****************************************
+/**
+* Assignation des variables supplémentaires pour l'affichage des pathologies
+*/
 if($page_request == "pathologies"){
-    //Connexion a la BD
-    try{
-        $bdd = new PDO('mysql:host=localhost; dbname=acupuncture; charset=utf8', 'root', '');
-        
-        //Recuperation des pathologies
-        $req_pathologies = $bdd->prepare('SELECT * FROM symptpatho 
-                                          LEFT JOIN patho ON symptpatho.idP = patho.idP
-                                          LEFT JOIN symptome ON symptpatho.idS = symptome.idS');
-        $req_pathologies->execute();
-        $i = 0;
-        while($temp = $req_pathologies->fetch()){
-            $pathologies[$i] = $temp;
-            $i++;
+    
+    $bdd = $Temp->getDB();                                                          /** Récupération de la BDD */ 
+   
+    if(isset($_POST['keyword']) && $_POST["keyword"] != "" ) {                      /** Si l'on a un keyword, on filtre les patho */
+        if(in_array($_POST['keyword'],explode('*',$Temp->get_keyword()))){
+            
+            $keyword = $_POST['keyword'];
+            $req_pathologies = $Temp->correspondance_keyword_symptome($keyword);    
+            $end = sizeof($req_pathologies);
         }
-        $req_pathologies->closeCursor();
-        
-        //Passage des pathologies en argument
-        $smarty->assign('pathologies',$pathologies);
-        $smarty->assign('end',$i-1);
+    } else {                                                                        /** Sinon, on récupère toutes les patho */
+        $req_pathologies = $Temp->getPatho();
+
+        $keyword = "Mot-clé";
+        $end = $req_pathologies->rowCount();
     }
-    catch (Exception $e){
-        die('</br></br>Detail de l\'erreur: ' . $e->getMessage());
-    }
+
+    $req_meridien = $Temp->getMeridien();                                           /** Récupération de la liste des méridiens */
+
+    $list_keyword = $Temp->get_keyword();                                           /** Récupération de la liste des mot-clés */
+
+    $smarty->assign('pathologies',$req_pathologies);                                /** Assignation des pathologies pour Smarty */
+    $smarty->assign('meridiens',$req_meridien);                                     /** Assignation des méridiens pour Smarty */
+    $smarty->assign('keyword',$keyword);                                            /** Assignation du mot-clé pour Smarty */
+    $smarty->assign('end',$end);                                                    /** Assignation du nbr de patho pour Smarty */
+    $smarty->assign('list_keyword',$list_keyword);                                  /** Assignation de la liste de mot-clés */
 }
 
 
-//***********************
-// AFfichage de l'index
-//***********************/
+/**
+* Finalement, on affiche la page
+*/
 $smarty->display('index.tpl'); 
 
 ?>

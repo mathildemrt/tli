@@ -1,0 +1,32 @@
+body { 
+    background-color :#fff;
+    font-family :Garamond, Arial, Serif;
+    font-size :14px;
+    color : #000;
+    margin :0;
+    padding :0;
+}
+header, footer{ /* Les éléments qui ne seront pas affichés  */
+    border:none;
+}
+.jumbotrom{
+    display:none;
+    margin : 0;
+    border:none;
+}
+div #description {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+}
+#description p{
+    text-align: justify;
+}
+
+#feed-actus{
+    display : inline-block;
+    width : 100%;
+}
+div .article{
+    border : none;
+}

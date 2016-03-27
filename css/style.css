@@ -4,6 +4,9 @@ html, body {
     font-family: Arial, sans-serif;
     font-size: 14px;
     text-align: center;
+    background-image: url(../img/bg-30.png);
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 html {
     height:100%;
@@ -12,52 +15,101 @@ body {
     min-height:100%;
 }
 
-/* HEADER */
+
+.container {
+    width: 85%;
+}
+
+
+/******************************************************
+                    STYLE DU HEADER
+******************************************************/
 header{
     text-transform: uppercase;
-    margin-bottom: 0;
+    background-color: #000;
+    margin-bottom: 0;    
+    -webkit-box-shadow: 2px 2px 60px 23px rgba(0,0,0,0.7);
+    -moz-box-shadow: 10px 10px 60px 23px rgba(0,0,0,0.7);
+    box-shadow: 2px 2px 60px 23px rgba(0,0,0,0.7);
+    border-radius: 0 0 20px 20px;
+    z-index:1;
 }
 .navbar{
+    background : linear-gradient(to bottom ,#D0D0D0,  #A0A0A0);
     margin-bottom: 0;
-    border-radius: 0;
+    border: 1px solid #555;
+    border-radius: 0 0 20px 20px;
+    z-index:1;
+}
+#erreur_connexion {
+    text-transform: uppercase;
+    color : crimson;
+    font-size: 10px;
+    float:none;
+}
+.navbar-text {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color : aliceblue;
+}
+.navbar-default .navbar-nav > li > a{
+    float : left;
+    color:aliceblue;
+}
+.navbar-default .navbar-nav > li > a.courante{
+    color:black;
+}
+form.navbar-form.navbar-right{
+    border : none;
+    max-width: 450px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-/* FOOTER */
+/******************************************************
+        STYLE DU FOOTER
+******************************************************/
 footer{
-    margin-bottom: 0;
-    background-color: #f8f8f8;
-    border-color: #e7e7e7;
-    margin-top: 2%;
+    margin-top: 5%;
+    background : linear-gradient(to bottom , #A0A0A0, #D0D0D0);
+    border: 1px solid #555;
+    border-radius: 30px 30px 0 0;
     font-style: italic;
-    font-size: 85%;
+    font-size: 12px;
     text-align: center;
-    width: 95%;
-    margin:auto;
+    width: 100%;
+    
+    -webkit-box-shadow: 2px 2px 60px 23px rgba(0,0,0,0.7);
+    -moz-box-shadow: 10px 10px 60px 23px rgba(0,0,0,0.7);
+    box-shadow: 2px 2px 60px 23px rgba(0,0,0,0.7);
 }
 
-/* PAGE D'ACCUEIL*/
+
+/******************************************************
+            STYLE DE LA PAGE D'ACCUEUIL
+******************************************************/
 .jumbotron {
-    height: 500px;
+    height: 475px;
     background : url("../img/Acupuncture3.jpg") no-repeat top center;
     background-size: cover;
     border-bottom : 2px solid #666;
-    border-top : 2px solid #666;
     text-align: left;
+    position: relative;
+    top: -20px;
 }
 .jumbotron h1{
     color: antiquewhite;
     text-shadow: #FFCD7D 1px 1px, #FFCD7D -1px 1px, #FFCD7D -1px -1px, #FFCD7D 1px -1px; 
 }
 
-#barre_recherche{
-    width : 50%;
-    
+.jumbotron p{
+    color: gray;
 }
+
 div #description {
-    margin: 0 20px;
     display: inline-block;
     width: 60%;
-    float: right;
+    float : right;
 }
 #description p{
     text-align: justify;
@@ -70,20 +122,21 @@ div #description {
     width : 35%;
 }
 
-div .article{
+.article{
     border : 1px solid #888;
     padding : 5px 20px;
     margin-bottom: 20px;
     background-color: whitesmoke;
+    color : #333;
     animation-duration: 0.5s;
         -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
-    filter: invert(0);
+   filter: invert(0);
         -webkit-filter: invert(0);
         -moz-filter: invert(0);
         -o-filter: invert(0);
         -ms-filter: invert(0);
 }
-div .article:hover {
+.article:hover {
     cursor: pointer;
     animation-duration: 0.5s;
         -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
@@ -94,12 +147,16 @@ div .article:hover {
         -ms-filter: invert(1);
     background-color: gray;
 }
+
 div #articlesPlus:hover{
     cursor:pointer;
+    color:black;
     text-decoration: underline;
 }
 
-/* PAGE PATHOLOGIES */
+/******************************************************
+        STYLE POUR LA PAGE PATHOLOGIES
+******************************************************/
 div .media{
     text-align: left;
     border-top: 1px solid black;
@@ -110,46 +167,135 @@ div .media img{
     width:64px;
 }
 div .form-inline{
-    padding-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+div.media-left.media-middle{
+    width: 15%;
+    padding:0;
+    text-align: center;
+}
+div.media-right{
+    margin-right: 5px;
+}
+#pagerBas{
     border-top: 1px solid black;
+    padding-top: 2%;
+}
+
+/******************************************************
+        STYLE POUR LE FORMULAIRE D'INSCRIPTION 
+******************************************************/
+#formulaire{
+    margin-top : 4%;
+}
+    
+#formulaire ul{
+    margin: 2% 20% 0 20%;
+    padding-left: 0;
+}
+#formulaire li, #search li{
+    list-style:none;
+}
+
+input :invalid { 
+    background-color: #F0DDDD;
+    -webkit-box-shadow: 0 0 2px rgba(255, 0, 0, .8); /* Fonctionne pas sur chrome */
+    -moz-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    -o-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    -ms-box-shadow: 0 0 2px rgba(255, 0, 0, .8);
+    box-shadow:0 0 2px rgba(255, 0, 0, .8);
+}
+
+#formulaire input, #search input{
+    border:1px solid #333;
+    width: 30%;
+    margin-bottom:1%;
+    margin-top:1%;
+    padding : 2px 5px 2px 5px;
+    border-radius: 5px;
+    display : inline;
+}  
+
+#formulaire input[type="submit"], #search input[type="submit"]{
+    min-width: 50px;
+    width: 120px;
+    margin-top : 4%;
+    color: #333;
+    background-color: white;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    padding: 10px 20px;
+    text-transform: uppercase;  
+    margin-bottom: 20px; 
+}
+#formulaire input[type="submit"]:hover{
+    color: antiquewhite;
+    background-color: #333;
+    cursor:pointer;
+}
+#formulaire label{
+    width : 20%;
+    min-width:230px;
+    text-align : left;
 }
 
 
-@media print{
-  
-    body { /* Modifications : la couleur de fond de page - la police - l'unitÃ© utilisÃ©e pour la taille de la police  */
-      font-family :Serif;
-      font-size :15pt;
-      margin :0;
-      border :none;
-    }
-    #barre_recherche{
-        display : none;
-    }
+/******************************************************
+            STYLE POUR LA PAGE A PROPOS
+******************************************************/
+#about {
+    text-align: left;
+}
+
+#about li{
+    list-style-type: none;
+}
+
+
+
+
+@media (max-width: 785px) {
     
-    .jumbotron{
-       background : url("../img/Acupuncture3.jpg") no-repeat top center;
+    div.container {
+        width: 100%;
+        margin-right : 5px;
+        margin-left:5px;
     }
-
-
-    #feed-actus{
+    p{
+        margin : 5px;
+    }
+    div #description {
         width : 100%;
     }
-
-    div #description {
+    
+    div #feed-actus{
         width: 100%;
     }
-
-    footer, header {
-      display :none;
+    h2{
+        font-size:20px;
     }
-
-    h1 {
-      line-height :25pt;
-      font-size :25pt;
+    #formulaire ul {
+        margin:0;
     }
-
-    h2, a { /* Modification de la couleur des titres et liens */
-      color :#000;
+    #formulaire input, #search input{
+        width : auto;
     }
+    #CptPatho{
+        display : none;
+    }
+    .pager > li > label{
+        display : none;
+    }
+    footer > p{
+        font-size : 12px;
+    }
+    select {
+        max-width: 350px;
+        margin-left: auto;
+        margin-right:auto;
+    }
+    
+    
+
 }

@@ -1,7 +1,7 @@
  <div class="supporting">
         <div class="container">
             <h1>Formulaire d'inscription</h1>
-            <form method="POST" action="#" id="formulaire">
+            <form method="POST" action="php/inscription.php" id="formulaire">
 
                 <ul>
                     <li aria-live="polite">
@@ -42,7 +42,7 @@
                     </li>
 
                     <li>
-                        <label for="submit" hidden=""></label>
+                        <label for="submit" hidden="">Inscription</label>
                         <input id="submit" name="submit" type="submit" value="S'inscrire"> 
                     </li>
                 </ul>

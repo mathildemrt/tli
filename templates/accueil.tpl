@@ -1,26 +1,14 @@
     <div class="jumbotron">
       <div class="container">
-        <div class="main">
-            <h1>Association des acupuncteurs</h1>
-            <form oninput="" method="get" action="" id="search">
-                <div class="" id="barre_recherche">
-                    <li>
-                        <label for="search" hidden="hidden">Recherche :</label>
-                        <input id="search"  name="search" tabindex="-1" type="text" placeholder="Rechercher sur le site" required>
-                        <label for="submit" hidden="hidden">Lancer la recherche</label>
-                        <input id=" submit" name="submit" type="submit" value="Rechercher"> 
-                    </li>
-                </div>
-            </form>
-        </div>
+        <h1>Association des acupuncteurs</h1>
+        <p>Parce qu'on a jamais vu un hérisson malade</p>
       </div>
     </div>
 
     <div class="supporting">
         <div class="container">
             <div id="feed-actus">
-                        <div id="articlesPlus" onclick="addArticle()">+ d'articles</div>
-
+                <div id="articlesPlus" onclick="addArticle()">+ d'articles</div>
             </div>
             
             <div id="description">
