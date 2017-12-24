@@ -1,6 +1,21 @@
+<div align="center">
+  <p>
+  <img src="https://image.freepik.com/free-icon/acupuncture-needles_318-47490.jpg" width="150" />
+  </p>
+
+  <p>
+    <strong>Acupuncture chinoise</strong>
+  </p>
+
+  <p>
+    <a href="https://mathmout.github.io/tli/">
+      Launch App
+    </a>
+  </p>
+</div>
+
+
 # Projet de TLI - Acupuncture chinoise
-
-
 
 ## Abstract
 
