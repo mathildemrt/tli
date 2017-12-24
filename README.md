@@ -1,3 +1,6 @@
+
+# Projet de TLI - Acupuncture chinoise
+
 <div align="center">
   <p>
   <img src="https://image.freepik.com/free-icon/acupuncture-needles_318-47490.jpg" width="150" />
@@ -14,8 +17,6 @@
   </p>
 </div>
 
-
-# Projet de TLI - Acupuncture chinoise
 
 ## Abstract
 
