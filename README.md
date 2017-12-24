@@ -1,5 +1,5 @@
 
-# Projet de TLI - Acupuncture chinoise
+# Projet de TL
 
 <div align="center">
   <p>
@@ -8,13 +8,7 @@
 
   <p>
     <strong>Acupuncture chinoise</strong>
-  </p>
-
-  <p>
-    <a href="https://mathmout.github.io/tli/">
-      Launch App
-    </a>
-  </p>
+  </p>s
 </div>
 
 
