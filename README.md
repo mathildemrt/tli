@@ -8,7 +8,7 @@
 
   <p>
     <strong>Acupuncture chinoise</strong>
-  </p>s
+  </p>
 </div>
 
 
